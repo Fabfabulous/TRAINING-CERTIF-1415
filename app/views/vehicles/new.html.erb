@@ -1,0 +1,10 @@
+<h1>Add a vehicle</h1>
+
+<%= simple_form_for @vehicle do |f| %>
+  <%= f.input :name %>
+  <%= f.input :brand %>
+  <%= f.input :type %>
+  <%= f.input :passenger %>
+  <%= f.input :price %>
+  <%= f.button :submit %>
+<% end %>
