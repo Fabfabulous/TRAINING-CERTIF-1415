@@ -1,0 +1,16 @@
+.show-main {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.show-main-column {
+  flex: 1 1 calc(50% - 2vw);
+  margin: 1vw;
+  height: auto;
+}
+
+@media screen and (max-width: 576px) {
+  .card {
+    flex: 1 1 calc(100% - 2vw);
+  }
+}

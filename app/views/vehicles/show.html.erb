@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="show-main">
+    <div class="show-main-column">
+      <%= cl_image_tag @vehicle.photo.key, height: 300, width: 400, crop: :fill, class: "image-preview" %>
+      <h2><%= "#{@vehicle.brand} - #{@vehicle.name}" %></h2>
+    </div>
+    <div class="show-main-column">
+       <%= render "shared/booking", locals: {flat: @vehicle, booking: @booking} %>
+    </div>
+  </div>
+  <% if @vehicle.user == current_user %>
+    <div class="manage-vehicle">
+      <%= link_to "Edit", edit_vehicle_path(@vehicle), class: "btn btn-gradient" %>
+    </div>
+  <% end %>
+</div>

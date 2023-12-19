@@ -1,1 +1,29 @@
-<h1>All our vehicles</h1>
+<div class="container">
+  <h1>All our vehicles</h1>
+  <p>All our <%= @vehicles.count %> vehicles</p>
+  <div class="cards">
+    <% @vehicles.each do | vehicle | %>
+      <div class="card">
+       <%= link_to vehicle_path(vehicle), class:"text-decoration-none" do %>
+
+        <%= cl_image_tag vehicle.photo.key, crop: :fill, class: "image-preview" %>
+
+        <h2><%= vehicle.name %></h2>
+        <div class="card-title">
+          <h4><%= vehicle.brand %></h4>
+          <p><%= vehicle.category %></p>
+        </div>
+        <div class="card-info">
+          <div class = "card-info-passenger">
+            <i class="fa-solid fa-people-group"></i>
+            <p> <%= vehicle.passenger %></p>
+          </div>
+          <div class="card-info-price">
+            <p><%= vehicle.price %> € / day</p>
+          </div>
+        </div>
+       <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

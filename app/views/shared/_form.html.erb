@@ -1,0 +1,9 @@
+<%= simple_form_for @vehicle do |f| %>
+  <%= f.input :name %>
+  <%= f.input :brand %>
+  <%= f.input :category, collection: ["Citadine", "Familiale", "Sport", "SUV", "Utilitaire"] %>
+  <%= f.input :passenger %>
+  <%= f.input :price %>
+  <%= f.input :photo, as: :file %>
+  <%= f.button :submit, class: "btn btn-gradient btn-sm pt-1" %>
+<% end %>

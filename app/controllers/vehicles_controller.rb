@@ -12,22 +12,33 @@ class VehiclesController < ApplicationController
 
   def create
     @vehicle = Vehicle.new(vehicle_params)
+    @vehicle.user = current_user
+    if @vehicle.save
+      redirect_to vehicle_path(@vehicle), notice: "Vehicle correctly created!"
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def show
-
+    @booking = Booking.new
   end
 
   def edit
-
   end
 
   def update
-
+    if @vehicle.update(vehicle_params)
+      redirect_to vehicle_path(@vehicle), notice: "Vehicle correctly updated!"
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def destroy
-
+    if @vehicle.destroy
+      redirect_to root_path, notice: "Vehicle correctly deleted!"
+    end
   end
 
   private
@@ -37,6 +48,6 @@ class VehiclesController < ApplicationController
   end
 
   def vehicle_params
-    params.require(:vehicle).permit(:name, :brand, :type, :passenger, :price)
+    params.require(:vehicle).permit(:name, :brand, :category, :passenger, :price, :photo)
   end
 end
