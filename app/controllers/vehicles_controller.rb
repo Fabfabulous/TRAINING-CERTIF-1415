@@ -4,6 +4,14 @@ class VehiclesController < ApplicationController
 
   def index
     @vehicles = Vehicle.all
+    if !params[:vehicle].nil? && params[:vehicle][:query].present?
+      sql_subquery = <<~SQL
+        vehicles.name ILIKE :query
+        OR vehicles.brand ILIKE :query
+        OR vehicles.category ILIKE :query
+      SQL
+      @vehicles = @vehicles.where(sql_subquery, query: "%#{params[:vehicle][:query]}%")
+    end
   end
 
   def new
