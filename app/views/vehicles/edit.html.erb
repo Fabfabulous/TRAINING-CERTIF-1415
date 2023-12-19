@@ -1,5 +1,7 @@
-<h1>Edit Vehicle</h1>
-<div>
-  <%= render "shared/form" %>
-  <%= button_to "Remove", vehicle_path(@vehicle), method: :delete, class:"no-style fa-solid fa-trash button-action", data: { confirm: 'Are you sure you want to delete this Vehicle?' }  %>
+<div class="container">
+  <h1>Edit Vehicle</h1>
+    <%= render "shared/form" %>
+</div>
+<div id="delete-button-container">
+  <%= button_to "  Remove", vehicle_path(@vehicle), method: :delete, class:"no-style fa-solid fa-trash p-2", data: { confirm: 'Are you sure you want to delete this Vehicle?' }  %>
 </div>

@@ -13,3 +13,10 @@
   background: linear-gradient(#147EFF, #0F67DA);
   color: white;
 }
+
+#delete-button-container {
+  position: fixed;
+  bottom: 20px; /* Ajustez selon vos besoins pour l'espace du bas */
+  right: 20px; /* Ajustez selon vos besoins pour l'espace de droite */
+  z-index: 1000; /* Assurez-vous que le bouton est au-dessus du contenu */
+}

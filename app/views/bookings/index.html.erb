@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>My bookings</h1>
+  <div class="cards">
+    <% @my_bookings.each do |my_booking| %>
+      <div class="card">
+        <h2>Booking's Detail</h2>
+        <p>Vehicle: <%= my_booking.vehicle.brand %> - <%= my_booking.vehicle.name %></p>
+        <p>From : <%= my_booking.start_date.strftime("%d-%m-%Y") %></p>
+        <p>To : <%= my_booking.end_date.strftime("%d-%m-%Y") %></p>
+        <p>TOTAL: <%= ((my_booking.end_date - my_booking.start_date + 1) * my_booking.vehicle.price).to_i  %> €</p>
+      </div>
+    <% end %>
+  </div>
+</div>

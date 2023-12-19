@@ -1,4 +1,10 @@
 class BookingsController < ApplicationController
+  def index
+    # Display all my ongoing booking > Start date after the date of the day
+    @my_bookings = current_user.bookings
+    @my_bookings = @my_bookings.where('start_date >= ?', Date.today)
+  end
+
   def new
     @booking = Booking.new
   end

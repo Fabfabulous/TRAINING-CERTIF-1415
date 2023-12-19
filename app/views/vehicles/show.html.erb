@@ -1,11 +1,26 @@
 <div class="container">
   <div class="show-main">
     <div class="show-main-column">
-      <%= cl_image_tag @vehicle.photo.key, height: 300, width: 400, crop: :fill, class: "image-preview" %>
-      <h2><%= "#{@vehicle.brand} - #{@vehicle.name}" %></h2>
+      <%= cl_image_tag @vehicle.photo.key, height: 300, width: 400, crop: :fill, class: "image-preview shadow-sm p-3 mb-5 bg-white rounded" %>
+      <div class="show-main-column-title">
+        <h2><%= "#{@vehicle.brand} - #{@vehicle.name}" %></h2>
+        <h4><%= @vehicle.category %></h4>
+      </div>
     </div>
     <div class="show-main-column">
-       <%= render "shared/booking", locals: {flat: @vehicle, booking: @booking} %>
+      <div class="show-main-column-info">
+        <div class = "card-info-passenger">
+          <i class="fa-solid fa-people-group"></i>
+          <p> <%= @vehicle.passenger %></p>
+        </div>
+        <div class="card-info-price">
+          <p><%= @vehicle.price %> € / day</p>
+        </div>
+      </div>
+      <div class="show-main-column-info">
+        <h2>Book it now</h2>
+      </div>
+      <%= render "shared/booking", locals: {flat: @vehicle, booking: @booking} %>
     </div>
   </div>
   <% if @vehicle.user == current_user %>

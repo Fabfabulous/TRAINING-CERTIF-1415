@@ -1,5 +1,7 @@
-<%= simple_form_for [@vehicle, @booking] do |f| %>
-  <%= f.input :start_date, as: :datetime %>
-  <%= f.input :end_date, as: :datetime%>
-  <%= f.button :submit, class: "btn btn-gradient btn-sm pt-1" %>
-<% end %>
+<div class="container-booking">
+  <%= simple_form_for [@vehicle, @booking], defaults: { input_html: { data: { controller: "datepicker" } } } do |f| %>
+    <%= f.input :start_date, as: :string %>
+    <%= f.input :end_date, as: :string %>
+    <%= f.button :submit, class: "btn btn-gradient btn-sm pt-1" %>
+  <% end %>
+</div>
