@@ -15,7 +15,7 @@ class BookingsController < ApplicationController
     @booking.vehicle = @vehicle
     @booking.user = current_user
     if @booking.save
-      redirect_to root_path, notice: "Vehicle correctly booked!"
+      redirect_to bookings_path, notice: "Vehicle correctly booked!"
     else
       render :new, status: :unprocessable_entity
     end

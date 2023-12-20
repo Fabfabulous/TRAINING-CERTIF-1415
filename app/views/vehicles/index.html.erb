@@ -1,44 +1,22 @@
-<div class="row justify-content-center">
-
-  <%= simple_form_for :vehicle, url: vehicles_path, method: :get, html: { class: "d-flex justify-content-end align-items-baseline p-2" } do |f| %>
-    <%= f.input :query,
-                label: false,
-                input_html: {
-                  class: "form-control",
-                  placeholder: "Type a keyword"
-                }
-    %>
-    <%= f.button :submit, "Search", class: "btn btn-gradient btn-sm" %>
-  <% end %>
-
-</div>
-
 <div class="container">
-  <h1>All our vehicles</h1>
-  <p>All our <%= @vehicles.count %> vehicles</p>
-  <div class="cards">
-    <% @vehicles.each do | vehicle | %>
-      <div class="card">
-       <%= link_to vehicle_path(vehicle), class:"text-decoration-none" do %>
+  <div data-controller="search">
+    <%= simple_form_for :vehicle,
+                        url: vehicles_path, method: :get,
+                        html: { class: "d-flex justify-content-end align-items-baseline p-2" },
+                        data: { search_target: "form" }  do |f| %>
+      <%= f.input :query,
+                  label: false,
+                  input_html: {
+                    data: { action: "keyup->search#filterVehicles" },
+                    class: "form-control",
+                    placeholder: "Type a keyword" } %>
 
-        <%= cl_image_tag vehicle.photo.key, crop: :fill, class: "image-preview" %>
-
-        <h2><%= vehicle.name %></h2>
-        <div class="card-title">
-          <h4><%= vehicle.brand %></h4>
-          <p><%= vehicle.category %></p>
-        </div>
-        <div class="card-info">
-          <div class = "card-info-passenger">
-            <i class="fa-solid fa-people-group"></i>
-            <p> <%= vehicle.passenger %></p>
-          </div>
-          <div class="card-info-price">
-            <p><%= vehicle.price %> € / day</p>
-          </div>
-        </div>
-       <% end %>
-      </div>
+      <%= f.button :submit, "Search", class: "btn btn-gradient btn-sm" %>
     <% end %>
   </div>
+  <h1>All our vehicles</h1>
+  <p>All our <%= @vehicles.count %> vehicles</p>
+
+    <%= render "list", vehicles: @vehicles %>
+
 </div>
